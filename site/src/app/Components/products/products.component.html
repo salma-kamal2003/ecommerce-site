@@ -1,0 +1,64 @@
+<div class="container mt-5">
+
+  <div class="bg-light p-4 rounded mb-4 mt-5" appBoxShadowHover>
+    <h2 class="mb-4">Haircare Products</h2>
+    <div *ngIf="haircareProducts.length === 0" class="alert alert-info">Loading...</div>
+    <div class="row">
+      <div class="col-12 mb-4">
+        <app-bodycare [products]="haircareProducts" (buyProduct)="onProductBought($event)"></app-bodycare>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-light p-4 rounded mb-4" appBoxShadowHover>
+    <h2 class="mb-4">Bodycare Products</h2>
+    <div *ngIf="bodycareProducts.length === 0" class="alert alert-info">Loading...</div>
+    <div class="row">
+      <div class="col-12 mb-4">
+        <app-bodycare [products]="bodycareProducts" (buyProduct)="onProductBought($event)"></app-bodycare>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-light p-4 rounded mb-4" appBoxShadowHover>
+    <h2 class="mb-4">Skincare Products</h2>
+    <div *ngIf="skincareProducts.length === 0" class="alert alert-info">Loading...</div>
+    <div class="row">
+      <div class="col-12 mb-4">
+        <app-skincare [products]="skincareProducts" (buyProduct)="onProductBought($event)"></app-skincare>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5" appBoxShadowHover>
+    <div class="col-md-12">
+      <h2>Selected Products</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of selectedProduct; let i = index">
+            <td>{{ product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ getProductPrice(product.name) * product.quantity | currency }}</td>
+            <td>
+              <button class="btn btn-danger m-md-3" (click)="removeProduct(i, 1)">Remove 1</button>
+              <button class="btn btn-danger" (click)="removeProduct(i, product.quantity)">Remove All</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bg-light p-4 rounded mt-4" appBoxShadowHover>
+    <h4 class="mb-2">Total Price: {{ totalPrice | currency }}</h4>
+    <h4>Total Price in Pounds: {{ totalPrice | currencyConverter | currency: 'GBP' }}</h4>
+  </div>
+</div>

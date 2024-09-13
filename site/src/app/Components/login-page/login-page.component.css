@@ -1,0 +1,22 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-image: url('https://images.pexels.com/photos/4207891/pexels-photo-4207891.jpeg?auto=compress&cs=tinysrgb&w=600');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.btn {
+  padding: 10px;
+}

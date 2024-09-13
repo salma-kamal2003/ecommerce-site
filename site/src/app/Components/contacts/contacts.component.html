@@ -1,0 +1,86 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Contact Us</h2>
+
+  <div class="row mb-5">
+    <div class="col-lg-8">
+      <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contact-form">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="contact.name" name="name" required>
+          <div *ngIf="contactForm.submitted && !contact.name" class="text-danger">
+            Name is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" [(ngModel)]="contact.email" name="email" required email>
+          <div *ngIf="contactForm.submitted && !contact.email" class="text-danger">
+            A valid email is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" rows="5" [(ngModel)]="contact.message" name="message"
+            required></textarea>
+          <div *ngIf="contactForm.submitted && !contact.message" class="text-danger">
+            Message is required.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" [disabled]="!contactForm.form.valid">Submit</button>
+      </form>
+    </div>
+
+    <div class="col-lg-4">
+      <h4>About Our Site</h4>
+      <p>Welcome to our e-commerce platform, where we offer the best products for your skin, hair, and body. We pride
+        ourselves on delivering high-quality products with excellent customer service.</p>
+      <p>For inquiries, feel free to fill out the contact form or visit our headquarters at the location shown on the
+        map below.</p>
+
+      <!-- Adding an image for the site -->
+      <img
+        src="https://images.pexels.com/photos/161245/church-bern-architecture-161245.jpeg?auto=compress&cs=tinysrgb&w=600"
+        alt="Ecommerce Site" class="img-fluid site-image mb-4">
+    </div>
+  </div>
+
+  <h2 class="text-center mb-4">Users and Admins</h2>
+  <div class="row mb-4">
+    <div *ngFor="let user of users" class="col-6 col-md-4 col-lg-3 mb-4 text-center">
+      <img [src]="user.imageUrl" alt="{{ user.name }}" class="img-fluid rounded-circle mb-2 user-img">
+      <h5>{{ user.name }}</h5>
+      <p>{{ user.role }}</p>
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <h4>Add New User/Admin</h4>
+    <div class="mb-3">
+      <label for="newName" class="form-label">Name</label>
+      <input type="text" class="form-control" id="newName" [(ngModel)]="newUser.name" name="newName">
+    </div>
+    <div class="mb-3">
+      <label for="newRole" class="form-label">Role</label>
+      <select class="form-control" id="newRole" [(ngModel)]="newUser.role" name="newRole">
+        <option>User</option>
+        <option>Admin</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="newImage" class="form-label">Upload Image</label>
+      <input type="file" class="form-control" id="newImage" (change)="onImageSelected($event)">
+    </div>
+    <button class="btn btn-success" (click)="addUser()">Add User/Admin</button>
+  </div>
+
+  <h2 class="text-center mb-4">Our Location</h2>
+  <div class="map-container">
+    <iframe width="100%" height="450"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509326!2d144.95373631568943!3d-37.81720974202142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5776e29ad6e7e0!2sE-commerce%20Site%20HQ!5e0!3m2!1sen!2sus!4v1605678492027!5m2!1sen!2sus"
+      style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4">Sign Up</h4>
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+              <label for="username" class="form-label">Username:</label>
+              <input id="username" type="text" formControlName="username" class="form-control"
+                [ngClass]="{'is-invalid': signupForm.get('username')?.invalid && signupForm.get('username')?.touched}">
+              <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched"
+                class="invalid-feedback">
+                Username is required.
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input id="email" type="email" formControlName="email" class="form-control"
+                [ngClass]="{'is-invalid': signupForm.get('email')?.invalid && signupForm.get('email')?.touched}">
+              <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
+                class="invalid-feedback">
+                Please enter a valid email.
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="password" class="form-label">Password:</label>
+              <input id="password" type="password" formControlName="password" class="form-control"
+                [ngClass]="{'is-invalid': signupForm.get('password')?.invalid && signupForm.get('password')?.touched}">
+              <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
+                class="invalid-feedback">
+                Password must be at least 6 characters.
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password:</label>
+              <input id="confirmPassword" type="password" formControlName="confirmPassword" class="form-control"
+                [ngClass]="{'is-invalid': signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched}">
+              <div *ngIf="signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched"
+                class="invalid-feedback">
+                Passwords must match.
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="placeKnown" class="form-label">How did you hear about us?</label>
+              <select id="placeKnown" formControlName="placeKnown" class="form-control"
+                (change)="onPlaceKnownChange($event)">
+                <option value="">Select</option>
+                <option value="Friend">Friend</option>
+                <option value="Social Media">Social Media</option>
+                <option value="Advertisement">Advertisement</option>
+                <option value="Other">Other</option>
+              </select>
+              <div *ngIf="signupForm.get('placeKnown')?.value === 'Other'" class="form-group mt-2">
+                <input type="text" class="form-control" placeholder="Please specify where"
+                  formControlName="otherPlace" />
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="role" class="form-label">Role:</label>
+              <select id="role" formControlName="role" class="form-control">
+                <option *ngFor="let role of roles" [value]="role">{{role}}</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="signupForm.invalid">Sign Up</button>
+          </form>
+
+          <!-- Display error message if there is one -->
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

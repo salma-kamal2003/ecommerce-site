@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4">Login</h4>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input id="email" type="email" formControlName="email" class="form-control"
+                [ngClass]="{'is-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
+              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="invalid-feedback">
+                Please enter a valid email.
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="password" class="form-label">Password:</label>
+              <input id="password" type="password" formControlName="password" class="form-control"
+                [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
+              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+                class="invalid-feedback">
+                Password is not valid.
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Login</button>
+          </form>
+
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+            <a routerLink="/signup" class="btn btn-link">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

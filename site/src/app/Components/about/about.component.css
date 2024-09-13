@@ -1,0 +1,27 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  height: 200px;
+  /* Set a fixed height */
+  object-fit: cover;
+  /* Ensure the image covers the area */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card-body {
+  padding: 20px;
+}

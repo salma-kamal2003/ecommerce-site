@@ -1,0 +1,8 @@
+<div>
+  <h3>Users and Admins List</h3>
+  <ul>
+    @for (user of users; track $index) {
+    <li>{{ user.name }} ({{ user.role }})</li>
+    }
+  </ul>
+</div>
